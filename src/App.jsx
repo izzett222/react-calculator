@@ -24,7 +24,6 @@ function App() {
   function createNumberHandler(symbol) {
     return () => {
       if (!operation) {
-        console.log("working");
         setFirstNumber(firstNumber + symbol);
       } else {
         setSecondNumber(secondNumber + symbol);
@@ -53,6 +52,17 @@ function App() {
     setSecondNumber("");
     setOperation("");
   }
+  function negateNumber() {
+    if (!operation && firstNumber) {
+      setFirstNumber(`${+firstNumber * -1}`);
+    } else if (operation && secondNumber) {
+      setSecondNumber(`${+secondNumber * -1}`);
+    } else if (operation && firstNumber && !secondNumber) {
+      setFirstNumber(`${+firstNumber * -1}`);
+    } else if (operation && firstNumber && secondNumber) {
+      setSecondNumber(`${+secondNumber * -1}`);
+    }
+  }
   let displayNumber = firstNumber || "0";
   if (operation && secondNumber) {
     displayNumber = secondNumber;
@@ -69,13 +79,13 @@ function App() {
               <Button bg="bg-[#DCDBDC]" onClick={reset} color={"color"}>
                 AC
               </Button>
-              {["+/-", "%"].map((el, i) => {
-                return (
-                  <Button key={i} bg="bg-[#DCDBDC]" color={"color"}>
-                    {el}
-                  </Button>
-                );
-              })}
+              <Button bg="bg-[#DCDBDC]" onClick={negateNumber} color={"color"}>
+                +/-
+              </Button>
+
+              <Button bg="bg-[#DCDBDC]" color={"color"}>
+                %
+              </Button>
             </div>
             <div className="grid grid-cols-3">
               {["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", "."].map(
