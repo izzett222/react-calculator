@@ -63,15 +63,11 @@ function App() {
       setSecondNumber(`${+secondNumber * -1}`);
     }
   }
-  let displayNumber = firstNumber || "0";
-  if (operation && secondNumber) {
-    displayNumber = secondNumber;
-  }
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="w-[350px]">
         <div className="h-16 bg-[#7B7A89] w-full flex justify-end items-center px-4">
-          <span className="text-3xl font-bold text-white">{displayNumber}</span>
+          <span className="text-3xl font-bold text-white">{operation && secondNumber ? secondNumber : firstNumber || "0"}</span>
         </div>
         <div className="flex">
           <div className="flex-1">
