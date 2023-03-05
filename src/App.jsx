@@ -23,12 +23,16 @@ function App() {
   const createNumberHandler = (symbol) => {
     return () => {
       if (!operation) {
-        setFirstNumber(firstNumber + symbol);
+        if (!(symbol === "." && firstNumber.includes("."))) {
+          setFirstNumber(firstNumber + symbol);
+        }
       } else {
-        setSecondNumber(secondNumber + symbol);
+        if (!(symbol === "." && secondNumber.includes("."))) {
+          setSecondNumber(secondNumber + symbol);
+        }
       }
     };
-  }
+  };
   const createOperationHandler = (symbol) => {
     return () => {
       if (symbol !== "=") {
@@ -40,17 +44,16 @@ function App() {
         }
       } else {
         const total = operate(operation, +firstNumber, +secondNumber);
-        console.log(total);
         setFirstNumber(total);
         setSecondNumber("");
       }
     };
-  }
+  };
   const reset = () => {
     setFirstNumber("");
     setSecondNumber("");
     setOperation("");
-  }
+  };
   const negateNumber = () => {
     if (!operation && firstNumber) {
       setFirstNumber(`${+firstNumber * -1}`);
@@ -61,12 +64,14 @@ function App() {
     } else if (operation && firstNumber && secondNumber) {
       setSecondNumber(`${+secondNumber * -1}`);
     }
-  }
+  };
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="w-[350px]">
         <div className="h-16 bg-[#7B7A89] w-full flex justify-end items-center px-4">
-          <span className="text-3xl font-bold text-white">{operation && secondNumber ? secondNumber : firstNumber || "0"}</span>
+          <span className="text-3xl font-bold text-white">
+            {operation && secondNumber ? secondNumber : firstNumber || "0"}
+          </span>
         </div>
         <div className="flex">
           <div className="flex-1">
