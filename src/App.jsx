@@ -21,7 +21,7 @@ function App() {
   const [secondNumber, setSecondNumber] = useState("");
   const [operation, setOperation] = useState("");
   console.log(firstNumber, operation, secondNumber);
-  function createNumberHandler(symbol) {
+  const createNumberHandler = (symbol) => {
     return () => {
       if (!operation) {
         setFirstNumber(firstNumber + symbol);
@@ -30,7 +30,7 @@ function App() {
       }
     };
   }
-  function createOperationHandler(symbol) {
+  const createOperationHandler = (symbol) => {
     return () => {
       if (symbol !== "=") {
         setOperation(symbol);
@@ -47,12 +47,12 @@ function App() {
       }
     };
   }
-  function reset() {
+  const reset = () => {
     setFirstNumber("");
     setSecondNumber("");
     setOperation("");
   }
-  function negateNumber() {
+  const negateNumber = () => {
     if (!operation && firstNumber) {
       setFirstNumber(`${+firstNumber * -1}`);
     } else if (operation && secondNumber) {
