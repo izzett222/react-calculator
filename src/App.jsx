@@ -20,7 +20,6 @@ function App() {
   const [firstNumber, setFirstNumber] = useState("");
   const [secondNumber, setSecondNumber] = useState("");
   const [operation, setOperation] = useState("");
-  console.log(firstNumber, operation, secondNumber);
   const createNumberHandler = (symbol) => {
     return () => {
       if (!operation) {
